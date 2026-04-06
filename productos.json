@@ -1,0 +1,52 @@
+[
+  {
+    "id": 101,
+    "nombre": "Remera Oversize Negra",
+    "desc": "Remera de algodón oversize color negro",
+    "precio": 18500,
+    "imagen": "remera-oversize-negra.jpg",
+    "categoria": "Remeras",
+    "stock": 12,
+    "disponible": true
+  },
+  {
+    "id": 102,
+    "nombre": "Buzo Urban Gris",
+    "desc": "Buzo frisado con capucha color gris",
+    "precio": 32500,
+    "imagen": "buzo-urban-gris.jpg",
+    "categoria": "Buzos",
+    "stock": 8,
+    "disponible": true
+  },
+  {
+    "id": 103,
+    "nombre": "Pantalon Cargo Beige",
+    "desc": "Pantalón cargo de gabardina color beige",
+    "precio": 28900,
+    "imagen": "pantalon-cargo-beige.jpg",
+    "categoria": "Pantalones",
+    "stock": 5,
+    "disponible": true
+  },
+  {
+    "id": 104,
+    "nombre": "Campera Bomber Verde",
+    "desc": "Campera bomber liviana color verde militar",
+    "precio": 45800,
+    "imagen": "campera-bomber-verde.jpg",
+    "categoria": "Camperas",
+    "stock": 3,
+    "disponible": true
+  },
+  {
+    "id": 105,
+    "nombre": "Gorra Classic Black",
+    "desc": "Gorra clásica negra con logo bordado",
+    "precio": 12400,
+    "imagen": "gorra-classic-black.jpg",
+    "categoria": "Accesorios",
+    "stock": 0,
+    "disponible": false
+  }
+]

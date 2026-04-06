@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1001,
+    "id_usuario": 1,
+    "fecha": "2026-04-01",
+    "total": 65900,
+    "direccion": "Av. Colón 1234, Córdoba",
+    "productos": [
+      {
+        "id_producto": 101,
+        "cantidad": 2
+      },
+      {
+        "id_producto": 103,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": false
+  },
+  {
+    "id": 1002,
+    "id_usuario": 2,
+    "fecha": "2026-04-02",
+    "total": 32500,
+    "direccion": "Dean Funes 550, Córdoba",
+    "productos": [
+      {
+        "id_producto": 102,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": true
+  },
+  {
+    "id": 1003,
+    "id_usuario": 3,
+    "fecha": "2026-04-03",
+    "total": 57800,
+    "direccion": "Bv. San Juan 780, Córdoba",
+    "productos": [
+      {
+        "id_producto": 103,
+        "cantidad": 2
+      }
+    ],
+    "pagada": false,
+    "entregada": false
+  },
+  {
+    "id": 1004,
+    "id_usuario": 5,
+    "fecha": "2026-04-04",
+    "total": 45800,
+    "direccion": "Av. Sabattini 3200, Córdoba",
+    "productos": [
+      {
+        "id_producto": 104,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": false
+  }
+]
