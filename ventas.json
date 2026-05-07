@@ -62,5 +62,12 @@
     ],
     "pagada": true,
     "entregada": false
+  },
+  {
+    "id": 1005,
+    "userId": 1,
+    "productId": 102,
+    "cantidad": 2,
+    "total": 90000
   }
 ]

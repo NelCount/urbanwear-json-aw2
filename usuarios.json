@@ -34,14 +34,5 @@
     "contraseña": "sofi890",
     "activo": false,
     "admin": false
-  },
-  {
-    "id": 5,
-    "nombre": "Valentina",
-    "apellido": "Ruiz",
-    "email": "valentina.ruiz@email.com",
-    "contraseña": "valepass",
-    "activo": true,
-    "admin": true
   }
 ]

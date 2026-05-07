@@ -48,5 +48,23 @@
     "categoria": "Accesorios",
     "stock": 0,
     "disponible": false
+  },
+  {
+    "id": 106,
+    "nombre": "Campera Oversize",
+    "categoria": "Abrigos",
+    "talle": "L",
+    "color": "Negro",
+    "precio": 45000,
+    "stock": 12
+  },
+  {
+    "id": 107,
+    "nombre": "Campera Oversize",
+    "categoria": "Abrigos",
+    "talle": "L",
+    "color": "Negro",
+    "precio": 55000,
+    "stock": 130
   }
 ]
