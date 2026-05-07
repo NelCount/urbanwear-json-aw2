@@ -75,6 +75,33 @@ Se utilizan distintos tipos de datos para representar correctamente la informaci
 
 ---
 
+## Segunda etapa - Rutas de la API
+
+Servidor desarrollado con Node.js y Express.js.
+
+### Productos
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | /api/v1/products/all | Lista todos los productos |
+| GET | /api/v1/products/:id | Busca un producto por ID |
+| POST | /api/v1/products/create | Crea un nuevo producto |
+| PUT | /api/v1/products/update/:id | Actualiza un producto existente |
+
+### Usuarios
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| DELETE | /api/v1/users/delete/:id | Elimina un usuario si no tiene ventas asociadas |
+
+### Ventas
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| POST | /api/v1/sales/create | Crea una venta validando usuario y producto existentes |
+
+---
+
 ## Próximos pasos
 
 Este proyecto será utilizado para futuras entregas. 
