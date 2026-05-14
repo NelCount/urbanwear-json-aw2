@@ -1,0 +1,329 @@
+[
+  {
+    "id": 1001,
+    "id_usuario": 1,
+    "fecha": "2026-04-01",
+    "total": 65900,
+    "direccion": "Av. Colón 1234, Córdoba",
+    "productos": [
+      {
+        "id_producto": 101,
+        "cantidad": 2
+      },
+      {
+        "id_producto": 103,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": false
+  },
+  {
+    "id": 1002,
+    "id_usuario": 2,
+    "fecha": "2026-04-02",
+    "total": 32500,
+    "direccion": "Dean Funes 550, Córdoba",
+    "productos": [
+      {
+        "id_producto": 102,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": true
+  },
+  {
+    "id": 1003,
+    "id_usuario": 3,
+    "fecha": "2026-04-03",
+    "total": 57800,
+    "direccion": "Bv. San Juan 780, Córdoba",
+    "productos": [
+      {
+        "id_producto": 103,
+        "cantidad": 2
+      }
+    ],
+    "pagada": false,
+    "entregada": false
+  },
+  {
+    "id": 1004,
+    "id_usuario": 5,
+    "fecha": "2026-04-04",
+    "total": 45800,
+    "direccion": "Av. Sabattini 3200, Córdoba",
+    "productos": [
+      {
+        "id_producto": 104,
+        "cantidad": 1
+      }
+    ],
+    "pagada": true,
+    "entregada": false
+  },
+  {
+    "id": 1005,
+    "userId": 1,
+    "productId": 102,
+    "cantidad": 2,
+    "total": 90000
+  },
+  {
+    "id": 1006,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      },
+      {
+        "productId": 105,
+        "name": "Gorra Classic Black",
+        "category": "Accesorios",
+        "quantity": 1,
+        "price": 12400,
+        "subtotal": 12400
+      }
+    ],
+    "total": 67400,
+    "date": "2026-05-13T20:57:15.846Z"
+  },
+  {
+    "id": 1007,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      },
+      {
+        "productId": 102,
+        "name": "Buzo Urban Gris",
+        "category": "Buzos",
+        "quantity": 1,
+        "price": 32500,
+        "subtotal": 32500
+      },
+      {
+        "productId": 104,
+        "name": "Campera Bomber Verde",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 45800,
+        "subtotal": 45800
+      },
+      {
+        "productId": 103,
+        "name": "Pantalon Cargo Beige",
+        "category": "Pantalones",
+        "quantity": 1,
+        "price": 28900,
+        "subtotal": 28900
+      },
+      {
+        "productId": 105,
+        "name": "Gorra Classic Black",
+        "category": "Accesorios",
+        "quantity": 1,
+        "price": 12400,
+        "subtotal": 12400
+      },
+      {
+        "productId": 106,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 45000,
+        "subtotal": 45000
+      },
+      {
+        "productId": 105,
+        "name": "Gorra Classic Black",
+        "category": "Accesorios",
+        "quantity": 1,
+        "price": 12400,
+        "subtotal": 12400
+      },
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      },
+      {
+        "productId": 105,
+        "name": "Gorra Classic Black",
+        "category": "Accesorios",
+        "quantity": 1,
+        "price": 12400,
+        "subtotal": 12400
+      },
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      },
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      },
+      {
+        "productId": 102,
+        "name": "Buzo Urban Gris",
+        "category": "Buzos",
+        "quantity": 1,
+        "price": 32500,
+        "subtotal": 32500
+      }
+    ],
+    "total": 368900,
+    "date": "2026-05-13T21:28:45.548Z"
+  },
+  {
+    "id": 1008,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      },
+      {
+        "productId": 105,
+        "name": "Gorra Classic Black",
+        "category": "Accesorios",
+        "quantity": 1,
+        "price": 12400,
+        "subtotal": 12400
+      },
+      {
+        "productId": 106,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 45000,
+        "subtotal": 45000
+      },
+      {
+        "productId": 102,
+        "name": "Buzo Urban Gris",
+        "category": "Buzos",
+        "quantity": 1,
+        "price": 32500,
+        "subtotal": 32500
+      }
+    ],
+    "total": 108400,
+    "date": "2026-05-13T21:29:15.741Z"
+  },
+  {
+    "id": 1009,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      },
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      },
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      }
+    ],
+    "total": 128500,
+    "date": "2026-05-14T21:35:16.711Z"
+  },
+  {
+    "id": 1010,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      },
+      {
+        "productId": 102,
+        "name": "Buzo Urban Gris",
+        "category": "Buzos",
+        "quantity": 1,
+        "price": 32500,
+        "subtotal": 32500
+      },
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      }
+    ],
+    "total": 106000,
+    "date": "2026-05-14T21:46:38.853Z"
+  },
+  {
+    "id": 1011,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 103,
+        "name": "Pantalon Cargo Beige",
+        "category": "Pantalones",
+        "quantity": 1,
+        "price": 28900,
+        "subtotal": 28900
+      },
+      {
+        "productId": 103,
+        "name": "Pantalon Cargo Beige",
+        "category": "Pantalones",
+        "quantity": 1,
+        "price": 28900,
+        "subtotal": 28900
+      }
+    ],
+    "total": 57800,
+    "date": "2026-05-14T21:46:51.354Z"
+  }
+]

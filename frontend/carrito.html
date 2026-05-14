@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito | UrbanWear</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-white">
+
+    <div class="min-h-screen bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px]">
+
+        <div class="min-h-screen bg-slate-950/80">
+
+            <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+
+                <h1 class="text-2xl font-bold tracking-wide">
+                    UrbanWear
+                </h1>
+
+                <nav class="flex gap-6 text-sm text-slate-300">
+                    <a href="./index.html" class="hover:text-white">
+                        Productos
+                    </a>
+
+                    <a href="./carrito.html" class="text-emerald-400">
+                        Carrito
+                    </a>
+                </nav>
+
+            </header>
+
+            <main class="max-w-5xl mx-auto px-8 py-12">
+
+                <section class="mb-10">
+
+                    <p class="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4">
+                        Tu selección
+                    </p>
+
+                    <h2 class="text-5xl font-bold mb-4">
+                        Carrito de compras
+                    </h2>
+
+                    <p class="text-slate-400">
+                        Revisá los productos antes de finalizar la compra.
+                    </p>
+
+                </section>
+
+                <section
+                    id="contenedor-carrito"
+                    class="space-y-4">
+                </section>
+
+                <section class="mt-10 bg-slate-900/90 border border-slate-800 p-8 rounded-2xl shadow-xl">
+
+                    <div class="flex justify-between items-center mb-8">
+
+                        <h3 class="text-2xl font-bold">
+                            Total
+                        </h3>
+
+                        <span
+                            id="total-carrito"
+                            class="text-4xl font-bold text-emerald-400">
+                            $0
+                        </span>
+
+                    </div>
+
+                    <button
+                        id="btn-finalizar-compra"
+                        class="bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition">
+
+                        Finalizar compra
+
+                    </button>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="./js/carrito.js"></script>
+
+</body>
+
+</html>

@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/all', async (req, res) => {
     try {
-        const fileProducts = await readFile('./productos.json', 'utf-8');
+        const fileProducts = await readFile('./backend/data/productos.json', 'utf-8');
         const productsData = JSON.parse(fileProducts);
 
         if (productsData.length) {
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
     try {
         const productId = Number(req.params.id);
-        const fileProducts = await readFile('./productos.json', 'utf-8');
+        const fileProducts = await readFile('./backend/data/productos.json', 'utf-8');
         const productsData = JSON.parse(fileProducts);
         const product = productsData.find((p) => p.id === productId);
 
@@ -41,7 +41,7 @@ router.post('/create', async (req, res) => {
     try {
         const newProduct = req.body;
 
-        const fileProducts = await readFile('./productos.json', 'utf-8');
+        const fileProducts = await readFile('./backend/data/productos.json', 'utf-8');
         const productsData = JSON.parse(fileProducts);
 
         const lastID = productsData.length > 0 
@@ -72,7 +72,7 @@ router.put('/update/:id', async (req, res) => {
 
         const updatedData = req.body;
 
-        const fileProducts = await readFile('./productos.json', 'utf-8');
+        const fileProducts = await readFile('./backend/data/productos.json', 'utf-8');
 
         const productsData = JSON.parse(fileProducts);
 
@@ -84,7 +84,7 @@ router.put('/update/:id', async (req, res) => {
                 ...updatedData
             };
 
-            await writeFile('./productos.json', JSON.stringify(productsData, null, 2), 'utf-8');
+            await writeFile('./backend/data/productos.json', JSON.stringify(productsData, null, 2), 'utf-8');
 
             res.status(200).json({
                 message: 'Producto actualizado exitosamente',

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanWear</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-white">
+
+    <!-- Fondo -->
+    <div class="min-h-screen bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px]">
+
+        <!-- Capa oscura -->
+        <div class="min-h-screen bg-slate-950/80">
+
+            <!-- NAVBAR -->
+            <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+
+                <h1 class="text-2xl font-bold tracking-wide">
+                    UrbanWear
+                </h1>
+
+                <nav class="flex gap-6 text-sm text-slate-300">
+
+                    <a href="./index.html" class="hover:text-white">
+                        Productos
+                    </a>
+
+                    <a href="./carrito.html" class="hover:text-white">
+                        Carrito
+                    </a>
+
+                </nav>
+
+            </header>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="max-w-7xl mx-auto px-8 py-12">
+
+                <section class="mb-12">
+
+                    <p class="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-4">
+                        Nueva colección
+                    </p>
+
+                    <h2 class="text-5xl font-bold mb-4">
+                        Ropa urbana con estilo premium
+                    </h2>
+
+                    <p class="text-slate-400 max-w-2xl">
+                        Explorá productos seleccionados de UrbanWear y agregalos a tu carrito.
+                    </p>
+
+                </section>
+
+                <!-- FILTROS -->
+                <section
+                    id="contenedor-filtros"
+                    class="flex flex-wrap gap-4 mb-10">
+
+                </section>
+
+                <!-- GRID DE PRODUCTOS -->
+                <section
+                    id="contenedor-productos"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Los productos se insertan desde JS -->
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="./js/productos.js"></script>
+
+</body>
+
+</html>

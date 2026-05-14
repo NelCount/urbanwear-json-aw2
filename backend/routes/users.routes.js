@@ -7,10 +7,10 @@ router.delete('/delete/:id', async (req, res) => {
     try {
         const userId = Number(req.params.id);
 
-        const fileUsers = await readFile('./usuarios.json', 'utf-8');
+        const fileUsers = await readFile('./backend/data/usuarios.json', 'utf-8');
         const usersData = JSON.parse(fileUsers);
 
-        const fileSales = await readFile('./ventas.json', 'utf-8');
+        const fileSales = await readFile('./backend/data/ventas.json', 'utf-8');
         const salesData = JSON.parse(fileSales);
 
         const userIndex = usersData.findIndex((u) => u.id === userId);
@@ -29,7 +29,7 @@ router.delete('/delete/:id', async (req, res) => {
 
         usersData.splice(userIndex, 1);
 
-        await writeFile('./usuarios.json', JSON.stringify(usersData, null, 2), 'utf-8');
+        await writeFile('./backend/data/usuarios.json', JSON.stringify(usersData, null, 2), 'utf-8');
 
         res.status(200).json('Usuario eliminado correctamente');
 
