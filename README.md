@@ -1,112 +1,123 @@
-# UrbanWear - Estructura JSON
+# UrbanWear - Aplicaciones Web 2
 
-Este proyecto corresponde a la primera entrega de la materia Aplicaciones Web 2.
+Proyecto fullstack desarrollado para la materia **Aplicaciones Web 2**.
 
-El objetivo es modelar una estructura de datos en formato JSON que represente un sistema de ventas de una tienda online.
+UrbanWear es una tienda online de ropa urbana que permite listar productos, filtrarlos por categoría, agregarlos a un carrito y generar una orden de compra desde el frontend hacia el backend.
 
-## 📦 Contexto
+## Tecnologías utilizadas
 
-UrbanWear es una tienda de ropa urbana que permite a los usuarios comprar productos a través de una plataforma digital.
+- Node.js
+- Express.js
+- JavaScript
+- TailwindCSS
+- LocalStorage
+- JSON como persistencia de datos
 
-## 📁 Estructura del proyecto
+## Funcionalidades principales
 
-El proyecto está compuesto por tres archivos JSON interrelacionados:
+- Listado dinámico de productos desde una API REST.
+- Filtro de productos por categoría.
+- Carrito de compras persistente con LocalStorage.
+- Página de carrito con cálculo de total.
+- Finalización de compra mediante petición POST al backend.
+- Generación de órdenes de compra en `ventas.json`.
+- Organización del proyecto separando frontend y backend.
 
-### 1. usuarios.json
-Contiene la información de los usuarios del sistema.
+## Estructura del proyecto
 
-Campos principales:
-- id
-- nombre
-- apellido
-- email
-- contraseña
-- activo (booleano)
-- admin (booleano)
+```txt
+UrbanWear-json/
+│
+├── backend/
+│   ├── data/
+│   │   ├── productos.json
+│   │   ├── usuarios.json
+│   │   └── ventas.json
+│   │
+│   ├── routes/
+│   │   ├── products.routes.js
+│   │   ├── users.routes.js
+│   │   └── sales.routes.js
+│   │
+│   └── index.js
+│
+├── frontend/
+│   ├── css/
+│   ├── js/
+│   │   ├── productos.js
+│   │   └── carrito.js
+│   │
+│   ├── index.html
+│   ├── productos.html
+│   └── carrito.html
+│
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
----
-
-### 2. productos.json
-Contiene el catálogo de productos disponibles.
-
-Campos principales:
-- id
-- nombre
-- desc
-- precio
-- imagen
-- categoria
-- stock
-- disponible (booleano)
-
----
-
-### 3. ventas.json
-Contiene las transacciones realizadas por los usuarios.
-
-Campos principales:
-- id
-- id_usuario (relación con usuarios.json)
-- fecha
-- total
-- direccion
-- productos (array de objetos con id_producto y cantidad)
-- pagada (booleano)
-- entregada (booleano)
-
----
-
-## Relación entre archivos
-
-- Un usuario puede tener múltiples ventas.
-- Una venta pertenece a un único usuario.
-- Una venta puede incluir múltiples productos.
-- Los productos dentro de una venta se relacionan mediante su id.
-
----
-
-## Tipos de datos utilizados
-
-Se utilizan distintos tipos de datos para representar correctamente la información:
-
-- Numéricos: id, precio, stock, total, cantidad
-- Cadenas de texto: nombre, email, descripcion, direccion
-- Booleanos: activo, admin, disponible, pagada, entregada
-
----
-
-## Segunda etapa - Rutas de la API
-
-Servidor desarrollado con Node.js y Express.js.
+## Endpoints principales
 
 ### Productos
 
 | Método | Ruta | Descripción |
 |---|---|---|
-| GET | /api/v1/products/all | Lista todos los productos |
-| GET | /api/v1/products/:id | Busca un producto por ID |
-| POST | /api/v1/products/create | Crea un nuevo producto |
-| PUT | /api/v1/products/update/:id | Actualiza un producto existente |
+| GET | `/api/v1/products/all` | Lista todos los productos |
+| GET | `/api/v1/products/:id` | Busca un producto por ID |
+| POST | `/api/v1/products/create` | Crea un nuevo producto |
+| PUT | `/api/v1/products/update/:id` | Actualiza un producto existente |
 
 ### Usuarios
 
 | Método | Ruta | Descripción |
 |---|---|---|
-| DELETE | /api/v1/users/delete/:id | Elimina un usuario si no tiene ventas asociadas |
+| DELETE | `/api/v1/users/delete/:id` | Elimina un usuario si no tiene ventas asociadas |
 
-### Ventas
+### Ventas / Órdenes
 
 | Método | Ruta | Descripción |
 |---|---|---|
-| POST | /api/v1/sales/create | Crea una venta validando usuario y producto existentes |
+| POST | `/api/v1/sales/create` | Crea una orden de compra con múltiples productos |
 
----
+## Formato de orden de compra
 
-## Próximos pasos
+Ejemplo de body enviado al backend:
 
-Este proyecto será utilizado para futuras entregas. 
+```json
+{
+  "userId": 1,
+  "products": [
+    {
+      "productId": 107,
+      "quantity": 1
+    },
+    {
+      "productId": 105,
+      "quantity": 1
+    }
+  ]
+}
+```
 
----
+## Cómo ejecutar el proyecto
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar el servidor:
+
+```bash
+npm run dev
+```
+
+Abrir en el navegador:
+
+```txt
+http://localhost:3000
+```
 
 ## Autor
 
