@@ -2,7 +2,7 @@
 
 Proyecto fullstack desarrollado para la materia **Aplicaciones Web 2**.
 
-UrbanWear es una tienda online de ropa urbana que permite listar productos, filtrarlos por categoría, agregarlos a un carrito y generar una orden de compra desde el frontend hacia el backend.
+UrbanWear es una tienda online de ropa urbana que permite listar productos, filtrarlos por categoría, agregarlos a un carrito, registrar usuarios, iniciar sesión y generar una orden de compra desde el frontend hacia el backend.
 
 ## Tecnologías utilizadas
 
@@ -11,6 +11,7 @@ UrbanWear es una tienda online de ropa urbana que permite listar productos, filt
 - JavaScript
 - TailwindCSS
 - LocalStorage
+- bcryptjs
 - JSON como persistencia de datos
 
 ## Funcionalidades principales
@@ -19,8 +20,13 @@ UrbanWear es una tienda online de ropa urbana que permite listar productos, filt
 - Filtro de productos por categoría.
 - Carrito de compras persistente con LocalStorage.
 - Página de carrito con cálculo de total.
+- Registro e inicio de sesión de usuarios.
+- Contraseñas protegidas mediante hashing con bcryptjs.
+- Visualización del usuario logueado en la barra de navegación.
+- Cierre de sesión.
+- Validación de usuario antes de finalizar una compra.
 - Finalización de compra mediante petición POST al backend.
-- Generación de órdenes de compra en `ventas.json`.
+- Generación de órdenes de compra asociadas al usuario logueado en `ventas.json`.
 - Organización del proyecto separando frontend y backend.
 
 ## Estructura del proyecto
@@ -44,12 +50,16 @@ UrbanWear-json/
 ├── frontend/
 │   ├── css/
 │   ├── js/
+│   │   ├── auth-navbar.js
+│   │   ├── carrito.js
+│   │   ├── login.js
 │   │   ├── productos.js
-│   │   └── carrito.js
+│   │   └── register.js
 │   │
 │   ├── index.html
-│   ├── productos.html
-│   └── carrito.html
+│   ├── carrito.html
+│   ├── login.html
+│   └── register.html
 │
 ├── package.json
 ├── package-lock.json
@@ -71,6 +81,9 @@ UrbanWear-json/
 
 | Método | Ruta | Descripción |
 |---|---|---|
+| GET | `/api/v1/users/all` | Lista usuarios sin exponer contraseñas |
+| POST | `/api/v1/users/register` | Registra un nuevo usuario |
+| POST | `/api/v1/users/login` | Valida credenciales e inicia sesión |
 | DELETE | `/api/v1/users/delete/:id` | Elimina un usuario si no tiene ventas asociadas |
 
 ### Ventas / Órdenes
@@ -97,6 +110,37 @@ Ejemplo de body enviado al backend:
     }
   ]
 }
+```
+
+## Autenticación de usuarios
+
+El sistema permite registrar usuarios desde la pantalla de Registro.
+
+Al registrarse, la contraseña no se guarda en texto plano, sino que se protege mediante hashing con `bcryptjs`.
+
+Luego, el usuario puede iniciar sesión desde la pantalla de Login. Cuando el inicio de sesión es correcto, la información del usuario se guarda en `localStorage` bajo la clave `usuarioLogueado`.
+
+Esta sesión permite:
+
+- Mostrar el saludo del usuario en la barra de navegación.
+- Ocultar las opciones de Login y Registro.
+- Mostrar la opción Cerrar sesión.
+- Asociar la orden de compra al usuario logueado.
+- Evitar finalizar una compra si no hay usuario autenticado.
+
+## Prueba de usuarios
+
+El sistema permite crear usuarios nuevos desde:
+
+```txt
+http://localhost:3000/register.html
+```
+
+También se puede usar un usuario de prueba, si ya se encuentra cargado en `usuarios.json`:
+
+```txt
+Email: j.bezos@email.com
+Contraseña: jeff1234
 ```
 
 ## Cómo ejecutar el proyecto
