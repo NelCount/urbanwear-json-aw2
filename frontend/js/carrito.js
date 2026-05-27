@@ -44,13 +44,23 @@ const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
 
 const finalizarCompra = async () => {
 
+    const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+
+    if (!usuarioLogueado) {
+        alert('Debés iniciar sesión para finalizar la compra');
+        window.location.href = './login.html';
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioLogueado);
+
     if (carrito.length === 0) {
         alert('El carrito está vacío');
         return;
     }
 
     const order = {
-        userId: 1, // Simulamos un usuario con ID 1
+        userId: usuario.id,
         products: carrito.map(producto => {
             return {
                 productId: producto.id,
@@ -60,7 +70,7 @@ const finalizarCompra = async () => {
     };
 
     try {
-        const respuesta = await fetch('http://localhost:3000/api/v1/sales/create', {
+        const respuesta = await fetch('/api/v1/sales/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

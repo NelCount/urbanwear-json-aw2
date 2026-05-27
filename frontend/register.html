@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        Registro - UrbanWear
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#020617] text-white min-h-screen overflow-hidden">
+
+    <!-- FONDO -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.10),transparent_35%),linear-gradient(180deg,#020617,#020617)]"></div>
+
+    <!-- CONTENIDO -->
+    <main class="relative z-10 flex items-center justify-center min-h-screen px-6">
+
+        <section class="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-3xl p-10 shadow-2xl backdrop-blur">
+
+            <h1 class="text-4xl font-bold mb-2">
+                Crear cuenta
+            </h1>
+
+            <p class="text-slate-400 mb-8">
+                Registrate para comenzar a comprar en UrbanWear
+            </p>
+
+            <form id="registerForm" class="space-y-5">
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Nombre"
+                    required
+                    class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-400"
+                >
+
+                <input
+                    type="text"
+                    id="apellido"
+                    placeholder="Apellido"
+                    required
+                    class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-400"
+                >
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                    class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-400"
+                >
+
+                <input
+                    type="password"
+                    id="contraseña"
+                    placeholder="Contraseña"
+                    required
+                    class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-400"
+                >
+
+                <button
+                    type="submit"
+                    class="w-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold py-3 rounded-xl transition"
+                >
+                    Registrarse
+                </button>
+
+            </form>
+
+            <p id="mensaje" class="mt-5 text-center text-sm text-emerald-400"></p>
+
+            <p class="mt-8 text-center text-slate-400 text-sm">
+                ¿Ya tenés cuenta?
+                <a href="./login.html" class="text-emerald-400 hover:text-emerald-300">
+                    Ingresá
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="./js/register.js"></script>
+
+</body>
+
+</html>

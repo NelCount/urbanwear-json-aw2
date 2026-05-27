@@ -325,5 +325,37 @@
     ],
     "total": 57800,
     "date": "2026-05-14T21:46:51.354Z"
+  },
+  {
+    "id": 1012,
+    "userId": 2,
+    "products": [
+      {
+        "productId": 101,
+        "name": "Remera Oversize Negra",
+        "category": "Remeras",
+        "quantity": 1,
+        "price": 18500,
+        "subtotal": 18500
+      }
+    ],
+    "total": 18500,
+    "date": "2026-05-26T21:00:02.182Z"
+  },
+  {
+    "id": 1013,
+    "userId": 3,
+    "products": [
+      {
+        "productId": 103,
+        "name": "Pantalon Cargo Beige",
+        "category": "Pantalones",
+        "quantity": 1,
+        "price": 28900,
+        "subtotal": 28900
+      }
+    ],
+    "total": 28900,
+    "date": "2026-05-27T20:32:59.229Z"
   }
 ]

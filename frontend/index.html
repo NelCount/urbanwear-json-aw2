@@ -20,25 +20,39 @@
         <div class="min-h-screen bg-slate-950/80">
 
             <!-- NAVBAR -->
-            <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+                <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
 
-                <h1 class="text-2xl font-bold tracking-wide">
-                    UrbanWear
-                </h1>
+                    <h1 class="text-2xl font-bold tracking-wide">
+                        UrbanWear
+                    </h1>
 
-                <nav class="flex gap-6 text-sm text-slate-300">
+                    <nav class="flex gap-6 text-sm text-slate-300">
 
-                    <a href="./index.html" class="hover:text-white">
-                        Productos
-                    </a>
+                        <span id="usuario-navbar"></span>
 
-                    <a href="./carrito.html" class="hover:text-white">
-                        Carrito
-                    </a>
+                        <a href="./index.html" class="hover:text-white">
+                            Productos
+                        </a>
 
-                </nav>
+                        <a href="./carrito.html" class="hover:text-white">
+                            Carrito
+                        </a>
 
-            </header>
+                        <button id="btn-logout" class="hidden">
+                            Cerrar sesión
+                        </button>
+
+                        <a id="link-login" href="./login.html">
+                            Login
+                        </a>
+
+                        <a id="link-register" href="./register.html">
+                            Registro
+                        </a>
+
+                    </nav>
+
+                </header>
 
             <!-- CONTENIDO PRINCIPAL -->
             <main class="max-w-7xl mx-auto px-8 py-12">
@@ -82,6 +96,8 @@
     </div>
 
     <script src="./js/productos.js"></script>
+
+    <script src="./js/auth-navbar.js"></script>
 
 </body>
 

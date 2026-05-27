@@ -1,14 +1,131 @@
 import { Router } from 'express';
 import { readFile, writeFile } from 'fs/promises';
+import bcrypt from 'bcryptjs';
 
 const router = Router();
+
+const filePath = './backend/data/usuarios.json';
+
+const leerUsuarios = async () => {
+    const fileUsers = await readFile(filePath, 'utf-8');
+    return JSON.parse(fileUsers);
+};
+
+const guardarUsuarios = async (usuarios) => {
+    await writeFile(filePath, JSON.stringify(usuarios, null, 2), 'utf-8');
+};
+
+const quitarPassword = (usuario) => {
+    const { contraseña, ...usuarioSinPassword } = usuario;
+    return usuarioSinPassword;
+};
+
+router.get('/all', async (req, res) => {
+    try {
+        const usersData = await leerUsuarios();
+        const usersSinPassword = usersData.map(quitarPassword);
+
+        res.status(200).json(usersSinPassword);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Error al obtener usuarios');
+    }
+});
+
+router.post('/register', async (req, res) => {
+    try {
+        const { nombre, apellido, email, contraseña } = req.body;
+
+        if (!nombre || !apellido || !email || !contraseña) {
+            return res.status(400).json('Faltan datos obligatorios');
+        }
+
+        const usersData = await leerUsuarios();
+
+        const emailExiste = usersData.some(
+            (u) => u.email.toLowerCase() === email.toLowerCase()
+        );
+
+        if (emailExiste) {
+            return res.status(400).json('El email ya está registrado');
+        }
+
+        const nuevoId =
+            usersData.length > 0
+                ? Math.max(...usersData.map((u) => u.id)) + 1
+                : 1;
+
+        const contraseñaHasheada = await bcrypt.hash(contraseña, 10);
+
+        const nuevoUsuario = {
+            id: nuevoId,
+            nombre,
+            apellido,
+            email,
+            contraseña: contraseñaHasheada,
+            activo: true,
+            admin: false
+        };
+
+        usersData.push(nuevoUsuario);
+
+        await guardarUsuarios(usersData);
+
+        res.status(201).json({
+            message: 'Usuario registrado correctamente',
+            user: quitarPassword(nuevoUsuario)
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Error al registrar usuario');
+    }
+});
+
+router.post('/login', async (req, res) => {
+    try {
+        const { email, contraseña } = req.body;
+
+        if (!email || !contraseña) {
+            return res.status(400).json('Email y contraseña son obligatorios');
+        }
+
+        const usersData = await leerUsuarios();
+
+        const usuario = usersData.find(
+            (u) => u.email.toLowerCase() === email.toLowerCase()
+        );
+
+        if (!usuario) {
+            return res.status(404).json('Usuario no encontrado');
+        }
+
+        if (!usuario.activo) {
+            return res.status(403).json('Usuario inactivo');
+        }
+
+        const passwordValida = await bcrypt.compare(contraseña, usuario.contraseña);
+
+        if (!passwordValida) {
+            return res.status(400).json('Contraseña incorrecta');
+        }
+
+        res.status(200).json({
+            message: 'Login correcto',
+            user: quitarPassword(usuario)
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Error al iniciar sesión');
+    }
+});
 
 router.delete('/delete/:id', async (req, res) => {
     try {
         const userId = Number(req.params.id);
 
-        const fileUsers = await readFile('./backend/data/usuarios.json', 'utf-8');
-        const usersData = JSON.parse(fileUsers);
+        const usersData = await leerUsuarios();
 
         const fileSales = await readFile('./backend/data/ventas.json', 'utf-8');
         const salesData = JSON.parse(fileSales);
@@ -29,7 +146,7 @@ router.delete('/delete/:id', async (req, res) => {
 
         usersData.splice(userIndex, 1);
 
-        await writeFile('./backend/data/usuarios.json', JSON.stringify(usersData, null, 2), 'utf-8');
+        await guardarUsuarios(usersData);
 
         res.status(200).json('Usuario eliminado correctamente');
 
