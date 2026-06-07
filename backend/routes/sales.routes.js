@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { readFile, writeFile } from 'fs/promises';
+import verifyToken from '../middlewares/auth.middleware.js';
 
 const router = Router();
 
-router.post('/create', async (req, res) => {
+router.post('/create', verifyToken, async (req, res) => {
 
     try {
         const newOrder = req.body;

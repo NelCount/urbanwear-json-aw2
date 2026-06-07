@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { readFile, writeFile } from 'fs/promises';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const router = Router();
 
@@ -110,8 +111,21 @@ router.post('/login', async (req, res) => {
             return res.status(400).json('Contraseña incorrecta');
         }
 
+        const token = jwt.sign(
+            {
+                id: usuario.id,
+                email: usuario.email,
+                admin: usuario.admin
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '1h'
+            }
+        );
+
         res.status(200).json({
             message: 'Login correcto',
+            token,
             user: quitarPassword(usuario)
         });
 

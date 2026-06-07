@@ -357,5 +357,21 @@
     ],
     "total": 28900,
     "date": "2026-05-27T20:32:59.229Z"
+  },
+  {
+    "id": 1014,
+    "userId": 2,
+    "products": [
+      {
+        "productId": 107,
+        "name": "Campera Oversize",
+        "category": "Camperas",
+        "quantity": 1,
+        "price": 55000,
+        "subtotal": 55000
+      }
+    ],
+    "total": 55000,
+    "date": "2026-06-07T16:00:06.950Z"
   }
 ]
