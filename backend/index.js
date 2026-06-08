@@ -5,6 +5,9 @@ import salesRouter from './routes/sales.routes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import connectDB from './config/database.js';
+
+connectDB();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
