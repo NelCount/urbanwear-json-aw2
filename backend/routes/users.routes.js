@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { readFile, writeFile } from 'fs/promises';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
 const router = Router();
 
@@ -23,10 +24,9 @@ const quitarPassword = (usuario) => {
 
 router.get('/all', async (req, res) => {
     try {
-        const usersData = await leerUsuarios();
-        const usersSinPassword = usersData.map(quitarPassword);
+        const usersData = await User.find().select('-contraseña');
 
-        res.status(200).json(usersSinPassword);
+        res.status(200).json(usersData);
     } catch (error) {
         console.error(error);
         res.status(500).json('Error al obtener usuarios');
@@ -41,40 +41,28 @@ router.post('/register', async (req, res) => {
             return res.status(400).json('Faltan datos obligatorios');
         }
 
-        const usersData = await leerUsuarios();
-
-        const emailExiste = usersData.some(
-            (u) => u.email.toLowerCase() === email.toLowerCase()
-        );
+        const emailExiste = await User.findOne({
+            email: email.toLowerCase()
+        });
 
         if (emailExiste) {
             return res.status(400).json('El email ya está registrado');
         }
 
-        const nuevoId =
-            usersData.length > 0
-                ? Math.max(...usersData.map((u) => u.id)) + 1
-                : 1;
-
         const contraseñaHasheada = await bcrypt.hash(contraseña, 10);
 
-        const nuevoUsuario = {
-            id: nuevoId,
+        const nuevoUsuario = await User.create({
             nombre,
             apellido,
-            email,
+            email: email.toLowerCase(),
             contraseña: contraseñaHasheada,
             activo: true,
             admin: false
-        };
-
-        usersData.push(nuevoUsuario);
-
-        await guardarUsuarios(usersData);
+        });
 
         res.status(201).json({
             message: 'Usuario registrado correctamente',
-            user: quitarPassword(nuevoUsuario)
+            user: quitarPassword(nuevoUsuario.toObject())
         });
 
     } catch (error) {
@@ -91,11 +79,9 @@ router.post('/login', async (req, res) => {
             return res.status(400).json('Email y contraseña son obligatorios');
         }
 
-        const usersData = await leerUsuarios();
-
-        const usuario = usersData.find(
-            (u) => u.email.toLowerCase() === email.toLowerCase()
-        );
+        const usuario = await User.findOne({
+            email: email.toLowerCase()
+        });
 
         if (!usuario) {
             return res.status(404).json('Usuario no encontrado');
@@ -105,7 +91,10 @@ router.post('/login', async (req, res) => {
             return res.status(403).json('Usuario inactivo');
         }
 
-        const passwordValida = await bcrypt.compare(contraseña, usuario.contraseña);
+        const passwordValida = await bcrypt.compare(
+            contraseña,
+            usuario.contraseña
+        );
 
         if (!passwordValida) {
             return res.status(400).json('Contraseña incorrecta');
@@ -113,7 +102,7 @@ router.post('/login', async (req, res) => {
 
         const token = jwt.sign(
             {
-                id: usuario.id,
+                id: usuario._id,
                 email: usuario.email,
                 admin: usuario.admin
             },
@@ -126,7 +115,7 @@ router.post('/login', async (req, res) => {
         res.status(200).json({
             message: 'Login correcto',
             token,
-            user: quitarPassword(usuario)
+            user: quitarPassword(usuario.toObject())
         });
 
     } catch (error) {
