@@ -20,41 +20,66 @@ const renderizarProductos = (productos) => {
     productos.forEach(producto => {
 
         const tarjeta = `
-        
-            <article class="bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl p-8 
-            hover:border-emerald-400 transition h-[260px] flex flex-col justify-between">
 
-                <div>
+            <article class="bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl overflow-hidden
+            hover:border-emerald-400 transition flex flex-col">
 
-                    <p class="text-sm text-emerald-400 uppercase tracking-widest mb-4">
-                        ${producto.categoria}
-                    </p>
-
-                    <h3 class="text-2xl font-bold">
-                        ${producto.nombre}
-                    </h3>
-
+                <div class="h-56 bg-slate-800 overflow-hidden">
+                    <img 
+                        src="${producto.imagen}" 
+                        alt="${producto.nombre}"
+                        onmouseenter="abrirModalImagen('${producto.imagen}', '${producto.nombre}')"
+                        onmouseleave="cerrarModalImagen()"
+                        class="w-full h-full object-cover hover:scale-110 transition duration-300"
+                    >
                 </div>
 
-                <div class="flex justify-between items-end gap-4">
+                <div class="p-6 flex flex-col flex-grow justify-between gap-6">
 
-                    <p class="text-3xl font-bold text-white">
-                        $${producto.precio}
-                    </p>
+                    <div>
 
-                    <button
-                        onclick='agregarAlCarrito(${JSON.stringify(producto)})'
-                        class="bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl 
-                        hover:bg-emerald-400 transition">
+                        <p class="text-sm text-emerald-400 uppercase tracking-widest mb-3">
+                            ${producto.categoria}
+                        </p>
 
-                        Agregar
+                        <h3 class="text-xl font-bold mb-3">
+                            ${producto.nombre}
+                        </h3>
 
-                    </button>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            ${producto.descripcion || 'Producto UrbanWear'}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <div class="flex justify-between items-center mb-4">
+
+                            <p class="text-2xl font-bold text-white">
+                                $${producto.precio}
+                            </p>
+
+                            <p class="text-sm text-slate-400">
+                                Envío disponible
+                            </p>
+
+                        </div>
+
+                        <button
+                            onclick='agregarAlCarrito(${JSON.stringify(producto)})'
+                            class="w-full bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl 
+                            hover:bg-emerald-400 transition">
+
+                            Agregar
+
+                        </button>
+
+                    </div>
 
                 </div>
 
             </article>
-        
         `;
 
         contenedorProductos.innerHTML += tarjeta;
@@ -148,12 +173,38 @@ const agregarAlCarrito = (producto) => {
         ? JSON.parse(carritoStorage)
         : [];
 
-    carrito.push(producto);
+    const productoExistente = carrito.find(item => item._id === producto._id);
+
+    if (productoExistente) {
+        productoExistente.quantity += 1;
+    } else {
+        carrito.push({
+            ...producto,
+            quantity: 1
+        });
+    }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
 
     alert('Producto agregado al carrito');
+};
 
+const abrirModalImagen = (imagen, nombre) => {
+    const modal = document.getElementById('modal-imagen');
+    const imagenModal = document.getElementById('imagen-modal');
+
+    imagenModal.src = imagen;
+    imagenModal.alt = nombre;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+};
+
+const cerrarModalImagen = () => {
+    const modal = document.getElementById('modal-imagen');
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 };
 
 obtenerProductos();

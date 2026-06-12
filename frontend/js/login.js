@@ -24,6 +24,7 @@ loginForm.addEventListener('submit', async (e) => {
         }
 
         localStorage.setItem('usuarioLogueado', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
 
         mensaje.textContent = 'Login correcto';
 

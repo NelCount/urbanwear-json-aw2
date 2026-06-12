@@ -1,11 +1,24 @@
 import { Router } from 'express';
-import { readFile, writeFile } from 'fs/promises';
 import verifyToken from '../middlewares/auth.middleware.js';
 import User from '../models/User.js';
 import Product from '../models/Product.js';
 import Sale from '../models/Sale.js';
 
 const router = Router();
+
+router.get('/all', async (req, res) => {
+    try {
+        const salesData = await Sale.find()
+            .populate('userId', 'nombre apellido email')
+            .populate('products.productId', 'nombre categoria precio');
+
+        res.status(200).json(salesData);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Error al obtener las ventas');
+    }
+});
 
 router.post('/create', verifyToken, async (req, res) => {
     try {
@@ -67,6 +80,47 @@ router.post('/create', verifyToken, async (req, res) => {
         res.status(500).json({
             message: 'Error al crear la orden',
             error: error.message
+        });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+
+        const sale = await Sale.findById(req.params.id)
+            .populate('userId', 'nombre apellido email')
+            .populate('products.productId', 'nombre categoria precio');
+
+        if (!sale) {
+            return res.status(404).json('Venta no encontrada');
+        }
+
+        res.status(200).json(sale);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Error al obtener la venta');
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+
+        const sale = await Sale.findByIdAndDelete(req.params.id);
+
+        if (!sale) {
+            return res.status(404).json('Venta no encontrada');
+        }
+
+        res.status(200).json({
+            message: 'Venta eliminada correctamente'
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: 'Error al eliminar la venta'
         });
     }
 });
