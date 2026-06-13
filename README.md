@@ -1,168 +1,267 @@
-# UrbanWear - Aplicaciones Web 2
+# UrbanWear 👕🛒
 
-Proyecto fullstack desarrollado para la materia **Aplicaciones Web 2**.
+Proyecto Full Stack desarrollado para la materia **Aplicaciones Web 2** de la carrera **Analista de Sistemas y Desarrollo de Software - IES Siglo 21**.
 
-UrbanWear es una tienda online de ropa urbana que permite listar productos, filtrarlos por categoría, agregarlos a un carrito, registrar usuarios, iniciar sesión y generar una orden de compra desde el frontend hacia el backend.
+UrbanWear es una tienda online de ropa urbana que permite visualizar productos, filtrarlos por categoría, registrarse e iniciar sesión, administrar un carrito de compras, generar órdenes de compra y realizar pagos mediante la integración de **Mercado Pago Checkout Pro (Sandbox)**.
 
-## Tecnologías utilizadas
+---
 
+# 🚀 Tecnologías utilizadas
+
+## Frontend
+- HTML5
+- CSS3
+- TailwindCSS
+- JavaScript (Vanilla JS)
+- LocalStorage
+
+## Backend
 - Node.js
 - Express.js
-- JavaScript
-- TailwindCSS
-- LocalStorage
+- JWT (JSON Web Tokens)
 - bcryptjs
-- JSON como persistencia de datos
+- dotenv
 
-## Funcionalidades principales
+## Base de Datos
+- MongoDB Atlas
+- Mongoose
 
-- Listado dinámico de productos desde una API REST.
-- Filtro de productos por categoría.
-- Carrito de compras persistente con LocalStorage.
-- Página de carrito con cálculo de total.
-- Registro e inicio de sesión de usuarios.
-- Contraseñas protegidas mediante hashing con bcryptjs.
-- Visualización del usuario logueado en la barra de navegación.
-- Cierre de sesión.
-- Validación de usuario antes de finalizar una compra.
-- Finalización de compra mediante petición POST al backend.
-- Generación de órdenes de compra asociadas al usuario logueado en `ventas.json`.
-- Organización del proyecto separando frontend y backend.
+## Integraciones externas
+- Mercado Pago Checkout Pro (Sandbox)
 
-## Estructura del proyecto
+---
 
-```txt
-UrbanWear-json/
+# ✨ Funcionalidades principales
+
+### Usuarios
+- Registro de usuarios.
+- Inicio de sesión mediante autenticación JWT.
+- Encriptación de contraseñas con bcryptjs.
+- Persistencia de sesión mediante LocalStorage.
+
+### Productos
+- Listado dinámico de productos desde MongoDB.
+- Filtrado de productos por categoría.
+- Visualización de imágenes dinámicas.
+- Consulta individual de productos.
+
+### Carrito de compras
+- Agregar productos al carrito.
+- Persistencia del carrito mediante LocalStorage.
+- Modificación de cantidades.
+- Eliminación de productos.
+- Cálculo automático del total de la compra.
+
+### Ventas
+- Generación de órdenes de compra.
+- Asociación de compras al usuario autenticado.
+- Persistencia de ventas en MongoDB.
+
+### Pagos
+- Integración con Mercado Pago Checkout Pro.
+- Generación de preferencias de pago desde el backend.
+- Apertura del Checkout oficial de Mercado Pago desde el carrito.
+- Implementación en entorno Sandbox para pruebas.
+
+---
+
+# 🏗️ Arquitectura del proyecto
+
+```text
+Frontend (HTML + JavaScript + TailwindCSS)
+                    ↓
+        API REST (Node.js + Express.js)
+                    ↓
+       MongoDB Atlas (Mongoose ODM)
+                    ↓
+        Mercado Pago Checkout Pro
+```
+
+---
+
+# 📁 Estructura del proyecto
+
+```text
+UrbanWear-json
 │
-├── backend/
-│   ├── data/
-│   │   ├── productos.json
-│   │   ├── usuarios.json
-│   │   └── ventas.json
-│   │
-│   ├── routes/
-│   │   ├── products.routes.js
-│   │   ├── users.routes.js
-│   │   └── sales.routes.js
-│   │
+├── backend
+│   ├── config
+│   ├── middlewares
+│   ├── models
+│   ├── routes
+│   ├── seed
 │   └── index.js
 │
-├── frontend/
-│   ├── css/
-│   ├── js/
-│   │   ├── auth-navbar.js
-│   │   ├── carrito.js
-│   │   ├── login.js
-│   │   ├── productos.js
-│   │   └── register.js
-│   │
+├── frontend
+│   ├── assets
+│   │   └── images
+│   ├── js
 │   ├── index.html
 │   ├── carrito.html
 │   ├── login.html
 │   └── register.html
 │
+├── .env
 ├── package.json
 ├── package-lock.json
 └── README.md
 ```
 
-## Endpoints principales
+---
 
-### Productos
+# ⚙️ Instalación y ejecución
 
-| Método | Ruta | Descripción |
-|---|---|---|
-| GET | `/api/v1/products/all` | Lista todos los productos |
-| GET | `/api/v1/products/:id` | Busca un producto por ID |
-| POST | `/api/v1/products/create` | Crea un nuevo producto |
-| PUT | `/api/v1/products/update/:id` | Actualiza un producto existente |
+## Clonar el repositorio
 
-### Usuarios
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| GET | `/api/v1/users/all` | Lista usuarios sin exponer contraseñas |
-| POST | `/api/v1/users/register` | Registra un nuevo usuario |
-| POST | `/api/v1/users/login` | Valida credenciales e inicia sesión |
-| DELETE | `/api/v1/users/delete/:id` | Elimina un usuario si no tiene ventas asociadas |
-
-### Ventas / Órdenes
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| POST | `/api/v1/sales/create` | Crea una orden de compra con múltiples productos |
-
-## Formato de orden de compra
-
-Ejemplo de body enviado al backend:
-
-```json
-{
-  "userId": 1,
-  "products": [
-    {
-      "productId": 107,
-      "quantity": 1
-    },
-    {
-      "productId": 105,
-      "quantity": 1
-    }
-  ]
-}
+```bash
+git clone https://github.com/TU-USUARIO/UrbanWear-json.git
 ```
 
-## Autenticación de usuarios
+## Ingresar al proyecto
 
-El sistema permite registrar usuarios desde la pantalla de Registro.
-
-Al registrarse, la contraseña no se guarda en texto plano, sino que se protege mediante hashing con `bcryptjs`.
-
-Luego, el usuario puede iniciar sesión desde la pantalla de Login. Cuando el inicio de sesión es correcto, la información del usuario se guarda en `localStorage` bajo la clave `usuarioLogueado`.
-
-Esta sesión permite:
-
-- Mostrar el saludo del usuario en la barra de navegación.
-- Ocultar las opciones de Login y Registro.
-- Mostrar la opción Cerrar sesión.
-- Asociar la orden de compra al usuario logueado.
-- Evitar finalizar una compra si no hay usuario autenticado.
-
-## Prueba de usuarios
-
-El sistema permite crear usuarios nuevos desde:
-
-```txt
-http://localhost:3000/register.html
+```bash
+cd UrbanWear-json
 ```
 
-También se puede usar un usuario de prueba, si ya se encuentra cargado en `usuarios.json`:
-
-```txt
-Email: j.bezos@email.com
-Contraseña: jeff1234
-```
-
-## Cómo ejecutar el proyecto
-
-Instalar dependencias:
+## Instalar dependencias
 
 ```bash
 npm install
 ```
 
-Ejecutar el servidor:
+## Ejecutar el proyecto
 
 ```bash
 npm run dev
 ```
 
-Abrir en el navegador:
+El servidor se ejecutará en:
 
-```txt
+```text
 http://localhost:3000
 ```
 
-## Autor
+---
 
-Nelson Sanchez
+# 🔐 Variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto:
+
+```env
+PORT=3000
+MONGO_URI=tu_uri_de_mongodb
+JWT_SECRET=tu_clave_secreta
+MP_PUBLIC_KEY=tu_public_key
+MP_ACCESS_TOKEN=tu_access_token
+```
+
+---
+
+# 🌐 Endpoints principales
+
+## Usuarios
+
+### Obtener usuarios
+
+```http
+GET /api/v1/users/all
+```
+
+### Registrar usuario
+
+```http
+POST /api/v1/users/register
+```
+
+### Iniciar sesión
+
+```http
+POST /api/v1/users/login
+```
+
+---
+
+## Productos
+
+### Obtener productos
+
+```http
+GET /api/v1/products/all
+```
+
+### Obtener producto por ID
+
+```http
+GET /api/v1/products/:id
+```
+
+### Crear producto
+
+```http
+POST /api/v1/products/create
+```
+
+### Actualizar producto
+
+```http
+PUT /api/v1/products/update/:id
+```
+
+---
+
+## Ventas
+
+### Obtener ventas
+
+```http
+GET /api/v1/sales/all
+```
+
+### Crear venta
+
+```http
+POST /api/v1/sales/create
+```
+
+---
+
+## Pagos
+
+### Crear preferencia de pago
+
+```http
+POST /api/v1/payments/create-preference
+```
+
+---
+
+# 💳 Integración con Mercado Pago
+
+El proyecto integra **Mercado Pago Checkout Pro (Sandbox)**, permitiendo:
+
+- Generar preferencias de pago desde el backend.
+- Renderizar el botón oficial de Mercado Pago en el carrito.
+- Abrir el Checkout Pro directamente desde la aplicación.
+- Simular pagos en entorno de pruebas mediante credenciales Sandbox.
+
+---
+
+# 📈 Mejoras futuras
+
+- Panel de administración.
+- Gestión automática de stock.
+- Historial de compras por usuario.
+- Confirmación de pagos mediante Webhooks.
+- Recuperación de contraseña.
+- Deploy en producción.
+- Panel de métricas y reportes de ventas.
+
+---
+
+# 👨‍💻 Autor
+
+**Nelson**
+
+Proyecto académico desarrollado para la materia **Aplicaciones Web 2** de la carrera **Analista de Sistemas y Desarrollo de Software** - **IES Siglo 21**.
+
+Desarrollado utilizando tecnologías Full Stack modernas: **Node.js, Express, MongoDB, JWT y Mercado Pago Checkout Pro**.
