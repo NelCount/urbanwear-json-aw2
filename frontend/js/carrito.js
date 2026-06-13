@@ -32,7 +32,7 @@ const renderizarCarrito = () => {
         const subtotal = Number(producto.precio) * producto.quantity;
 
         const item = `
-            <article class="bg-slate-900/90 border border-slate-800 p-6 rounded-2xl shadow-xl flex justify-between items-center gap-6">
+            <article class="bg-slate-900/90 border border-slate-800 p-6 rounded-2xl shadow-xl grid grid-cols-[1fr_180px_180px] items-center gap-6">
 
                 <div>
                     <p class="text-sm text-emerald-400 uppercase tracking-widest mb-2">
@@ -46,9 +46,17 @@ const renderizarCarrito = () => {
                     <p class="text-slate-400 mt-2">
                         Precio unitario: $${producto.precio}
                     </p>
+
+                    <button
+                        onclick="eliminarProducto('${producto._id}')"
+                        class="mt-4 text-sm bg-red-500/20 text-red-300 px-3 py-2 rounded-lg hover:bg-red-500/30 transition">
+
+                        Eliminar
+
+                    </button>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center justify-center gap-4">
 
                     <button
                         onclick="restarCantidad('${producto._id}')"
@@ -68,7 +76,7 @@ const renderizarCarrito = () => {
 
                 </div>
 
-                <p class="text-3xl font-bold text-white min-w-[140px] text-right">
+                <p class="text-3xl font-bold text-white text-right">
                     $${subtotal}
                 </p>
 
@@ -104,6 +112,16 @@ const restarCantidad = (id) => {
         guardarCarrito();
         renderizarCarrito();
     }
+};
+
+const eliminarProducto = (id) => {
+
+    carrito = carrito.filter(producto => producto._id !== id);
+
+    guardarCarrito();
+
+    renderizarCarrito();
+
 };
 
 const finalizarCompra = async () => {
