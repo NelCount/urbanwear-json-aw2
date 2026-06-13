@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { readFile, writeFile } from 'fs/promises';
 import Product from '../models/Product.js';
 
 const router = Router();

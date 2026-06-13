@@ -1,21 +1,9 @@
 import { Router } from 'express';
-import { readFile, writeFile } from 'fs/promises';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
 const router = Router();
-
-const filePath = './backend/data/usuarios.json';
-
-const leerUsuarios = async () => {
-    const fileUsers = await readFile(filePath, 'utf-8');
-    return JSON.parse(fileUsers);
-};
-
-const guardarUsuarios = async (usuarios) => {
-    await writeFile(filePath, JSON.stringify(usuarios, null, 2), 'utf-8');
-};
 
 const quitarPassword = (usuario) => {
     const { contraseña, ...usuarioSinPassword } = usuario;
@@ -121,41 +109,6 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json('Error al iniciar sesión');
-    }
-});
-
-router.delete('/delete/:id', async (req, res) => {
-    try {
-        const userId = Number(req.params.id);
-
-        const usersData = await leerUsuarios();
-
-        const fileSales = await readFile('./backend/data/ventas.json', 'utf-8');
-        const salesData = JSON.parse(fileSales);
-
-        const userIndex = usersData.findIndex((u) => u.id === userId);
-
-        if (userIndex === -1) {
-            return res.status(404).json('Usuario no encontrado');
-        }
-
-        const userSales = salesData.some((s) => s.userId === userId);
-
-        if (userSales) {
-            return res.status(400).json(
-                'No se puede eliminar el usuario porque tiene ventas asociadas'
-            );
-        }
-
-        usersData.splice(userIndex, 1);
-
-        await guardarUsuarios(usersData);
-
-        res.status(200).json('Usuario eliminado correctamente');
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json('Error al eliminar el usuario');
     }
 });
 
