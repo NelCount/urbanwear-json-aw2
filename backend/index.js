@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
 import connectDB from './config/database.js';
+import paymentsRoutes from './routes/payments.routes.js';
 
 connectDB();
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/sales', salesRouter);
+app.use('/api/v1/payments', paymentsRoutes);
 
 app.listen(port, () => {
     console.log(`Servidor levantado en puerto ${port}`);

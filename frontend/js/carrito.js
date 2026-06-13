@@ -181,4 +181,49 @@ const finalizarCompra = async () => {
 
 btnFinalizarCompra.addEventListener('click', finalizarCompra);
 
+const iniciarMercadoPago = async () => {
+    try {
+
+        if (carrito.length === 0) {
+            return;
+        }
+
+        const respuesta = await fetch('/api/v1/payments/create-preference', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                products: carrito
+            })
+        });
+
+        const data = await respuesta.json();
+
+        const mp = new MercadoPago(
+            'APP_USR-f6aae74f-c019-401f-9085-ed9dfe474df3'
+        );
+
+        mp.checkout({
+            preference: {
+                id: data.preferenceId
+            },
+            render: {
+                container: '#wallet_container',
+                label: 'Pagar con Mercado Pago'
+            },
+            callbacks: {
+                onClose: () => {
+                    location.reload();
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 renderizarCarrito();
+
+iniciarMercadoPago();
