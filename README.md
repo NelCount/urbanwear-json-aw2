@@ -114,7 +114,7 @@ UrbanWear-json
 ## Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU-USUARIO/UrbanWear-json.git
+git clone https://github.com/NelCount/urbanwear-json-aw2
 ```
 
 ## Ingresar al proyecto
